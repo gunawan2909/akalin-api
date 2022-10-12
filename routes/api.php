@@ -37,12 +37,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //Question Control
     Route::post('/createquestion', [QuestionController::class, 'store']);
     Route::get('/showquestion/{id}', [QuestionController::class, 'show']);
+    Route::get('/question', [QuestionController::class, 'index']);
 
-    //Customer Control
-    Route::get('/question/indexcustomer', [QuestionController::class, 'indexcustomer']);
-
-    //consultant Control
-    Route::get('/question/indexconsultant', [QuestionController::class, 'indexconsultant']);
+    
 });
 Route::post('/createconsultant', [UserController::class, 'storeconsultant']);
 Route::post('/createcustomer', [UserController::class, 'storecustomer']);

@@ -14,28 +14,10 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexcustomer(Request $request)
+    public function index()
     {
         try {
-            $question_customer = question::where('costomer_id', $request->user()->id)->get();
-            $showcase_question = question::where('kind', 'showcase')->get();
-            return response()->json([
-                'massage' => 'success',
-                'question_customer' => $question_customer,
-                'showcase_question' => $showcase_question
-            ], 200);
-        } catch (Exception $e) {
-            return response()->json([
-                'message' => 'error',
-                'message_error' => $e->getMessage(),
-            ], 401);
-            exit;
-        }
-    }
-    public function indexconsultant(Request $request)
-    {
-        try {
-            $question = question::where('consultant_id', $request->user()->id)->get();
+            $question = question::filter(request(['kind', 'university', 'course', 'study_program', 'status', 'customer_id', 'consultant_id']))->get();
             return response()->json([
                 'massage' => 'success',
                 'question' => $question
@@ -144,7 +126,7 @@ class QuestionController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */   
     public function show($id)
     {
         try {
@@ -183,7 +165,7 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

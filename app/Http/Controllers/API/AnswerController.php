@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Exception;
 use App\Models\answer;
+use App\Models\question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -49,6 +50,7 @@ class AnswerController extends Controller
 
             $data['question_id'] = $id;
             $answer = answer::create($data);
+            $request = question::where('id', $id)->update('status', 'complited');
             return response()->json([
                 'massage' => 'success',
                 'answer' => $answer

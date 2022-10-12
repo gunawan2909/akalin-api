@@ -23,6 +23,7 @@ return new class extends Migration
             $table->time('date')->nullable();
             $table->string('university');
             $table->string('course');
+            $table->string('study_program');
             $table->foreignId('answer_id');
             $table->string('file')->nullable();
         });
